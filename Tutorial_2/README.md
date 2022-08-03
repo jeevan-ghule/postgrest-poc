@@ -90,6 +90,7 @@ response
  curl "http://localhost:3000/people?order=age.nullsfirst"
  curl "http://localhost:3000/people?order=age.nullslast"
 
+default order: asc?
 
 Limits and Pagination
 
