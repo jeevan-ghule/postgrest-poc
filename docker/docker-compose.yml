@@ -1,0 +1,21 @@
+# Usage
+#   Start:          docker-compose up
+#   With helpers:   docker-compose -f docker-compose.yml -f ./dev/docker-compose.dev.yml up
+#   Stop:           docker-compose down
+#   Destroy:        docker-compose -f docker-compose.yml -f ./dev/docker-compose.dev.yml down -v --remove-orphans
+
+version: "3.8"
+
+services:
+  rest:
+    container_name: supabase-rest
+    image: postgrest/postgrest:v9.0.0
+    restart: unless-stopped
+    environment:
+      PGRST_DB_URI: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      PGRST_DB_SCHEMAS: api
+      PGRST_DB_ANON_ROLE: web_anon
+      # PGRST_JWT_SECRET: ${JWT_SECRET}
+      # PGRST_DB_USE_LEGACY_GUCS: "false"
+      # volumes:
+      #   - ./volumes/storage:/var/lib/storage

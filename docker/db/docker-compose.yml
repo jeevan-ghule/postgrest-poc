@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  pg:
+    container_name: postgres-container
+    image: postgres
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "authenticator"
+      POSTGRES_PASSWORD: "mysecretpassword"
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"

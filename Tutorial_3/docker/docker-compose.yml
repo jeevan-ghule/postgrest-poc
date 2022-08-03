@@ -1,0 +1,31 @@
+version: '3'
+services:
+  server:
+    image: postgrest/postgrest
+    env_file:
+      - ./.env
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      PGRST_DB_SCHEMAS: ${PGRST_DB_SCHEMAS}
+      PGRST_DB_ANON_ROLE: web_anon #In production this role should not be the same as the one used for the connection
+      PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGRST_DB_PRE_REQUEST: ${PGRST_DB_PRE_REQUEST}
+    # Uncomment this if you want to persist the data.
+    volumes:
+      #   - "./pgdata:/var/lib/postgresql/data"
+      - ./init-db:/docker-entrypoint-initdb.d
