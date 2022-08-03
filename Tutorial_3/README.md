@@ -39,11 +39,17 @@ curl "http://localhost:3000/films?my_tsv=fts(english).Dhamal"
 
 7. filter
 
-"http://localhost:3000/films?select=*,roles(*)&roles.character=in.(Heero)"
+curl "http://localhost:3000/films?select=*,roles(*)&roles.character=in.(Heero)"
 
 
 8. custom query function
 
-curl "http://localhost:3000/rpc/add_them" \
+curl "http://localhost:3000/rpc/add_them_int" \
   -X POST -H "Content-Type: application/json" \
   -d '{ "a": 1, "b": 2 }'
+
+
+TODO  Not working in CMD but working in browser
+http://localhost:3000/films?select=title,actors!inner(first_name,last_name)&actors.first_name=eq.Jeevan
+
+curl "http://localhost:3000/films?select%3Dtitle%2Cactors!inner(first_name%2Clast_name)%26actors.first_name%3Deq.Jeevan"
