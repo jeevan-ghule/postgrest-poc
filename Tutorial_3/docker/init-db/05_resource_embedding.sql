@@ -113,7 +113,7 @@ insert into api.nominations (compitation_id,film_id,rank) values
   ( 1,1,1),(2,2,2),(3,3,3);
 
 
-  CREATE FUNCTION api.add_them(a integer, b integer)
+CREATE FUNCTION api.add_them_int(a integer, b integer)
 RETURNS integer AS $$
  SELECT a + b;
 $$ LANGUAGE SQL IMMUTABLE;

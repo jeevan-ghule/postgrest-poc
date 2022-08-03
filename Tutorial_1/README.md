@@ -38,10 +38,26 @@ select extract(epoch from now() + '5 minutes'::interval) :: integer;
  This token has role access "todo_user"
 export TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicm9sZSI6InRvZG9fdXNlciIsImlhdCI6MTUxNjIzOTAyMn0.PW7SbR0pbiIt_NEP71Mc4PhVrkuoF7MX0K-vrv_cQKY"
 
+   A. create
+
     curl http://localhost:3000/todos -X POST \
      -H "Authorization: Bearer $TOKEN"   \
      -H "Content-Type: application/json" \
      -d '{"task": "learn how to auth"}'
+
+
+   B. update id 1
+
+     curl "http://localhost:3000/todos?id=eq.1" -X PATCH \
+     -H "Authorization: Bearer $TOKEN"   \
+     -H "Content-Type: application/json" \
+     -d '{"task": "update learn how to auth"}'
+
+   C. delete
+
+     curl "http://localhost:3000/todos?id=eq.1" -X DELETE \
+     -H "Authorization: Bearer $TOKEN"   \
+     -H "Prefer: return=representation"
 
 
 Note this token is valid till expiration time even. Even if you remove the user token is still valid

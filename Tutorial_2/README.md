@@ -142,3 +142,11 @@ Content-Range: 0-9/10
 Content-Location: /people
 Content-Type: application/json; charset=utf-8
 Content-Profile: api
+
+
+13. josnb filters
+
+curl "http://localhost:3000/people?select=id,details->>address"
+
+
+curl "http://localhost:3000/people?select=id,details->>address&details->>address=eq.bopkhel"

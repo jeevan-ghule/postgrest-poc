@@ -3,12 +3,13 @@ create table api.people (
   id serial primary key,
   name text not null,
   student boolean not null default false,
-  age int not null
+  age int not null,
+  details jsonb
 );
 
 
-insert into api.people (name,student,age) values
-  ('jeevan', false ,30), ('praitk', true ,31),('heero', true ,32),('swapnil', false ,33),('mayur', false ,34);
+insert into api.people (name,student,age,details) values
+  ('jeevan', false ,30, '{ "address" :"pune"}'), ('praitk', true ,31, '{ "address" :"bopkhel"}'),('heero', true ,32, '{ "address" :"mumbai"}'),('swapnil', false ,33, '{ "address" :"warje"}'),('mayur', false ,34, '{ "address" :"thane"}');
 
 insert into api.people (name,student,age) values
   ('prashnt', false ,35), ('praitk-2', true ,36),('heero-2', true ,37),('swapnil-2', true ,38),('mayur-2', true ,39);
@@ -30,8 +31,3 @@ ORDER BY age DESC;
 
 grant select on api.student_people to web_anon;
 grant all on api.student_people to todo_user;
-
-CREATE FUNCTION api.add_them(a integer, b integer)
-RETURNS integer AS $$
- SELECT a + b;
-$$ LANGUAGE SQL IMMUTABLE;
