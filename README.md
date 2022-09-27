@@ -23,3 +23,5 @@ join tables
 4. Full text search
 
 curl "http://localhost:3000/films?my_tsv=fts(english).Dhamal"
+
+5. user login flow with custom docker
