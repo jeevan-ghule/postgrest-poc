@@ -12,7 +12,7 @@ table people (
 
 To run 
 
-1. Go to Tutorial_O -> docker folder
+1. Go to Tutorial_2 -> docker folder
 2. Run the following command
    docker-compose up 
 3. To stop the docker container, run the following command

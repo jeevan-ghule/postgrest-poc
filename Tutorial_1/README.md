@@ -9,7 +9,7 @@ user can access the table but not able to create a new row in the table.
 
 To run 
 
-1. Go to Tutorial_O -> docker folder
+1. Go to Tutorial_1 -> docker folder
 2. Run the following command
    docker-compose up 
 3. To stop the docker container, run the following command
