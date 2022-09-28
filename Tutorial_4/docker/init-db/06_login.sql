@@ -94,7 +94,7 @@ begin
   end if;
 
   select sign(
-      row_to_json(r), 'reallyreallyreallyreallyverysafe'
+      row_to_json(r), 't/LviH6kc2QUqPhoFKX+Id61tbwqFGWY2cdeMGLAgTQONC02hURALz88mxQg017dU/VOaZUH6Rh2pybYrqJKLA=='
     ) as token
     from (
       select _role as role, login.email as email,
